@@ -658,18 +658,23 @@ footer { background: var(--navy); padding: 2rem; display: flex; justify-content:
 
   // Contact form mock
   function sendMsg(btn) {
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.textContent = '⚠ Message Not Sent';
+    btn.style.background = '#e63946';
+
+    alert("Message not sent. Please mail me at: allwinjacob007@gmail.com");
+
     setTimeout(() => {
-      btn.textContent = '✓ Message Sent';
-      btn.style.background = '#2a7d6e';
-      setTimeout(() => {
-        btn.textContent = 'Send Message';
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
-    }, 1000);
-  }
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3000);
+
+  }, 1000);
+}
 </script>
 </body>
 </html>
