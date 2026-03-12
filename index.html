@@ -31,7 +31,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--t
 /* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line); height: 60px; display: flex; align-items: center;
 }
 .nav-inner {
@@ -42,7 +42,7 @@ nav {
 .nav-logo span { color: var(--teal); }
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text2); text-decoration: none; transition: color 0.2s; }
-.nav-links a:hover { color: var(--teal); }
+.nav-links a:hover, .nav-links a.active { color: var(--teal); }
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
 .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); border-radius: 2px; }
 .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; z-index: 99; }
@@ -58,8 +58,8 @@ section.alt { background: var(--bg2); }
 .divider { width: 40px; height: 3px; background: var(--teal); border-radius: 2px; margin: 1rem 0 2.5rem; }
 
 /* HERO */
-#hero { padding-top: calc(60px + 80px); padding-bottom: 80px; border-bottom: 1px solid var(--line); }
-.hero-layout { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: center; }
+#hero { padding-top: calc(60px + 70px); padding-bottom: 70px; border-bottom: 1px solid var(--line); }
+.hero-layout { display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: center; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.2rem; }
 .hero-eyebrow::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--teal); }
 .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5.5vw, 4.2rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 1rem; }
@@ -77,20 +77,23 @@ section.alt { background: var(--bg2); }
 .stat-n sup { font-size: 1rem; color: var(--teal); }
 .stat-l { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text3); margin-top: 0.25rem; }
 
-/* HERO CARD */
-.hero-card { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 2rem; }
-.hero-card-photo { width: 100%; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--line); }
-.hero-card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-.hero-card-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
-.avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; flex-shrink: 0; overflow: hidden; }
-.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-.hero-card-name { font-weight: 700; font-size: 0.95rem; color: var(--navy); }
-.hero-card-status { font-size: 0.75rem; color: var(--text3); margin-top: 0.1rem; }
-.status-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #2ecc71; margin-right: 0.3rem; }
-.info-rows { display: flex; flex-direction: column; gap: 0.65rem; }
-.info-row { display: flex; align-items: center; gap: 0.65rem; font-size: 0.8rem; color: var(--text2); }
-.info-icon { width: 26px; height: 26px; border-radius: 5px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
-.info-row a { color: var(--teal); text-decoration: none; }
+/* PROFILE CARD */
+.profile-card { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.profile-photo { width: 100%; height: 260px; overflow: hidden; background: var(--bg3); position: relative; }
+.profile-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.profile-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%); }
+.profile-photo-placeholder span { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; color: rgba(255,255,255,0.2); }
+.profile-card-body { padding: 1.25rem 1.5rem; }
+.profile-name-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); }
+.profile-avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 2px solid var(--line); background: var(--navy); display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.9rem; }
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.profile-card-name { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+.profile-status { font-size: 0.7rem; color: var(--text3); margin-top: 0.1rem; display: flex; align-items: center; gap: 0.3rem; }
+.status-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+.info-rows { display: flex; flex-direction: column; gap: 0.6rem; }
+.info-row { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.78rem; color: var(--text2); }
+.info-icon { width: 24px; height: 24px; border-radius: 5px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; flex-shrink: 0; margin-top: 1px; }
+.info-row a { color: var(--teal); text-decoration: none; word-break: break-all; }
 .info-row a:hover { text-decoration: underline; }
 
 /* ABOUT */
@@ -109,7 +112,7 @@ section.alt { background: var(--bg2); }
 .skill-icon { font-size: 1rem; }
 .skill-name { font-size: 0.85rem; font-weight: 600; color: var(--navy); }
 .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.chip { font-size: 0.72rem; font-weight: 500; padding: 0.22rem 0.55rem; border-radius: 4px; background: var(--bg2); color: var(--text2); border: 1px solid var(--line); }
+.chip { font-size: 0.72rem; font-weight: 500; padding: 0.22rem 0.6rem; border-radius: 4px; background: var(--bg2); color: var(--text2); border: 1px solid var(--line); }
 
 /* EXPERIENCE */
 .exp-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 2.5rem; }
@@ -123,21 +126,26 @@ section.alt { background: var(--bg2); }
 .exp-list li::before { content: '—'; color: var(--teal); flex-shrink: 0; }
 
 /* PROJECTS */
-.proj-featured { background: var(--navy); color: #fff; border-radius: var(--radius); padding: 2.5rem; margin-bottom: 1.5rem; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
+.proj-featured {
+  background: var(--navy); color: #fff; border-radius: var(--radius);
+  padding: 2.5rem; margin-bottom: 1.5rem;
+  display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;
+}
 .feat-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.5rem; }
-.feat-title { font-family: 'DM Sans', sans-serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3; letter-spacing: -0.01em; }
+.feat-title { font-family: 'DM Sans', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; line-height: 1.3; letter-spacing: -0.01em; }
 .feat-desc { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 1.5rem; }
 .feat-metrics { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
 .pm-v { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: #fff; }
 .pm-k { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.1rem; }
 .feat-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.chip-inv { font-size: 0.72rem; padding: 0.22rem 0.55rem; border-radius: 4px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.12); }
-.feat-side { writing-mode: vertical-rl; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); padding: 1rem 0.5rem; border-left: 1px solid rgba(255,255,255,0.08); }
+.chip-inv { font-size: 0.72rem; padding: 0.22rem 0.6rem; border-radius: 4px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.78); border: 1px solid rgba(255,255,255,0.12); }
+.feat-side { writing-mode: vertical-rl; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.18); padding: 1rem 0.5rem; border-left: 1px solid rgba(255,255,255,0.08); }
 .proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
 .proj-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; transition: border-color 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
 .proj-card:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(42,125,110,0.07); }
 .proj-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
-.tag-v { color: var(--teal); } .tag-e { color: var(--gold); }
+.tag-v { color: var(--teal); }
+.tag-e { color: var(--gold); }
 .proj-title { font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.4; }
 .proj-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.65; flex: 1; margin-bottom: 1rem; }
 
@@ -172,43 +180,54 @@ section.alt { background: var(--bg2); }
 .field textarea { min-height: 110px; }
 
 /* FOOTER */
-footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+footer { background: var(--navy); padding: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .footer-name { font-family: 'Playfair Display', serif; color: #fff; font-size: 0.95rem; font-weight: 600; }
-.footer-copy { font-size: 0.75rem; margin-top: 0.2rem; }
+.footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.45); margin-top: 0.2rem; }
 .footer-top { font-size: 0.75rem; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
 .footer-top:hover { color: rgba(255,255,255,0.8); }
 
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+/* FADE-IN ANIMATION — uses CSS animation so it works even without JS scroll */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+.fade.d1 { animation-delay: 0.05s; }
+.fade.d2 { animation-delay: 0.15s; }
+.fade.d3 { animation-delay: 0.25s; }
+.fade.d4 { animation-delay: 0.35s; }
+.fade.d5 { animation-delay: 0.45s; }
+.fade.d6 { animation-delay: 0.55s; }
+/* Scroll-triggered for sections further down */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .reveal.in { opacity: 1; transform: none; }
-.d1{transition-delay:.05s}.d2{transition-delay:.12s}.d3{transition-delay:.19s}
-.d4{transition-delay:.26s}.d5{transition-delay:.33s}.d6{transition-delay:.4s}
 
 /* RESPONSIVE */
-@media(max-width:900px){
-  .hero-layout{grid-template-columns:1fr}
-  .hero-card{display:none}
-  .about-grid{grid-template-columns:1fr;gap:2rem}
-  .skills-grid{grid-template-columns:repeat(2,1fr)}
-  .proj-grid{grid-template-columns:repeat(2,1fr)}
-  .extras-grid{grid-template-columns:repeat(2,1fr)}
-  .contact-grid{grid-template-columns:1fr;gap:2.5rem}
-  .edu-grid{grid-template-columns:1fr}
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .proj-featured{grid-template-columns:1fr}
-  .feat-side{display:none}
+@media (max-width: 900px) {
+  .hero-layout { grid-template-columns: 1fr; }
+  .profile-card { max-width: 360px; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .skills-grid { grid-template-columns: repeat(2,1fr); }
+  .proj-grid { grid-template-columns: repeat(2,1fr); }
+  .extras-grid { grid-template-columns: repeat(2,1fr); }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .proj-featured { grid-template-columns: 1fr; }
+  .feat-side { display: none; }
 }
-@media(max-width:560px){
-  .skills-grid{grid-template-columns:1fr}
-  .proj-grid{grid-template-columns:1fr}
-  .extras-grid{grid-template-columns:1fr}
-  .hero-stats{gap:1.5rem}
+@media (max-width: 560px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .extras-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">Allwin <span>Jacob</span></div>
@@ -225,6 +244,7 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
     </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mob">
   <a href="#about" onclick="closeMob()">About</a>
   <a href="#skills" onclick="closeMob()">Skills</a>
@@ -234,51 +254,93 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
   <a href="#contact" onclick="closeMob()">Contact</a>
 </div>
 
-<!-- HERO -->
+<!-- ═══════════════════════════════════════════ HERO -->
 <section id="hero">
   <div class="container">
     <div class="hero-layout">
+
+      <!-- LEFT: Text -->
       <div>
-        <div class="hero-eyebrow">Embedded Systems &amp; VLSI Engineer</div>
-        <h1 class="hero-name">Allwin Jacob</h1>
-        <p class="hero-role">Team Lead at <strong>Evolve Robotics LLP</strong> &nbsp;·&nbsp; M.Tech VLSI &amp; Embedded Systems</p>
-        <p class="hero-desc">2+ years building embedded products and electronic systems — from RTL processor design in Verilog to firmware on STM32 and ESP32. Currently focused on FPGA implementation and processor architecture.</p>
-        <div class="hero-actions">
+        <div class="hero-eyebrow fade d1">Embedded Systems &amp; VLSI Engineer</div>
+        <h1 class="hero-name fade d2">Allwin Jacob</h1>
+        <p class="hero-role fade d3">Team Lead at <strong>Evolve Robotics LLP</strong> &nbsp;·&nbsp; M.Tech VLSI &amp; Embedded Systems</p>
+        <p class="hero-desc fade d3">2+ years building embedded products and electronic systems — from RTL processor design in Verilog to firmware on STM32 and ESP32. Currently focused on FPGA implementation and processor architecture.</p>
+        <div class="hero-actions fade d4">
           <a href="#projects" class="btn btn-fill">View Projects</a>
           <a href="#contact" class="btn btn-outline">Get In Touch</a>
         </div>
-        <div class="hero-stats">
-          <div><div class="stat-n">2<sup>+</sup></div><div class="stat-l">Years Experience</div></div>
-          <div><div class="stat-n">8<sup>+</sup></div><div class="stat-l">Projects</div></div>
-          <div><div class="stat-n">0</div><div class="stat-l">Timing Violations</div></div>
-          <div><div class="stat-n">3</div><div class="stat-l">Certifications</div></div>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-photo">
-          <img src="allwin.jpeg" alt="Allwin Jacob" onerror="this.parentElement.style.display='none'">
-        </div>
-        <div class="hero-card-top">
-          <div class="avatar"><img src="allwin.jpeg" alt="AJ" onerror="this.style.display='none';this.parentElement.textContent='AJ'"></div>
+        <div class="hero-stats fade d5">
           <div>
-            <div class="hero-card-name">Allwin Jacob</div>
-            <div class="hero-card-status"><span class="status-dot"></span>Open to Opportunities</div>
+            <div class="stat-n">2<sup>+</sup></div>
+            <div class="stat-l">Years Experience</div>
+          </div>
+          <div>
+            <div class="stat-n">8<sup>+</sup></div>
+            <div class="stat-l">Projects Built</div>
+          </div>
+          <div>
+            <div class="stat-n">0</div>
+            <div class="stat-l">Timing Violations</div>
+          </div>
+          <div>
+            <div class="stat-n">3</div>
+            <div class="stat-l">Certifications</div>
           </div>
         </div>
-        <div class="info-rows">
-          <div class="info-row">
-          <div class="info-icon">📧</div><a href="mailto:allwinjacob007@gmail.com">allwinjacob007@gmail.com</a></div>     
-          <div class="info-row"><div class="info-icon">📱</div><span>+91 95671 21189</span></div>
-          <div class="info-row"><div class="info-icon">🔗</div><a href="https://linkedin.com/in/allwinjacob" target="_blank">linkedin.com/in/allwinjacob</a></div>
-          <div class="info-row"><div class="info-icon">🎓</div><span>M.Tech VLSI &amp; Embedded, 2024–26</span></div>
-          <div class="info-row"><div class="info-icon">📍</div><span>Kerala, India</span></div>
+      </div>
+
+      <!-- RIGHT: Profile Card with Photo -->
+      <div class="profile-card fade d4">
+        <div class="profile-photo">
+          <img src="allwin.jpg" alt="Allwin Jacob"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="profile-photo-placeholder" style="display:none;">
+            <span>AJ</span>
+          </div>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-name-row">
+            <div class="profile-avatar">
+              <img src="allwin.jpg" alt="AJ"
+                   onerror="this.style.display='none'; this.parentElement.textContent='AJ';">
+            </div>
+            <div>
+              <div class="profile-card-name">Allwin Jacob</div>
+              <div class="profile-status">
+                <span class="status-dot"></span> Open to Opportunities
+              </div>
+            </div>
+          </div>
+          <div class="info-rows">
+            <div class="info-row">
+              <div class="info-icon">📧</div>
+              <a href="mailto:allwinjacob007@gmail.com">allwinjacob007@gmail.com</a>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">📱</div>
+              <span>+91 95671 21189</span>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">🔗</div>
+              <a href="https://linkedin.com/in/allwinjacob" target="_blank" rel="noopener">linkedin.com/in/allwinjacob</a>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">🎓</div>
+              <span>M.Tech VLSI &amp; Embedded, 2024–26</span>
+            </div>
+            <div class="info-row">
+              <div class="info-icon">📍</div>
+              <span>Kerala, India</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ═══════════════════════════════════════════ ABOUT -->
 <section id="about" class="alt">
   <div class="container">
     <div class="reveal">
@@ -287,14 +349,14 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
       <div class="divider"></div>
     </div>
     <div class="about-grid">
-      <div class="about-text reveal d1">
+      <div class="about-text reveal">
         <p>I'm an Embedded Systems and R&D Engineer with over two years of experience building embedded products and electronic systems from the ground up. Currently serving as Team Lead at Evolve Robotics LLP, I work across the full spectrum of hardware engineering — from circuit design and PCB layout to firmware and system integration.</p>
-        <p>Alongside my professional work, I'm pursuing an M.Tech in VLSI & Embedded Systems, deepening my expertise in RTL design, digital logic, and processor architecture. I recently designed a complete 32-bit RV32I RISC-V processor in Verilog — achieving zero timing violations after synthesis.</p>
-        <p>I'm driven by the challenge of building reliable, efficient systems at the intersection of hardware and software — whether optimising firmware on an STM32 or exploring clock gating in FPGA designs.</p>
+        <p>Alongside my professional work, I'm pursuing an M.Tech in VLSI &amp; Embedded Systems, deepening my expertise in RTL design, digital logic, and processor architecture. I recently designed a complete 32-bit RV32I RISC-V processor in Verilog — achieving zero timing violations after synthesis.</p>
+        <p>I'm driven by the challenge of building reliable, efficient systems at the intersection of hardware and software — whether optimising firmware on an STM32 or exploring clock gating techniques in FPGA designs.</p>
       </div>
-      <div class="pillars reveal d2">
+      <div class="pillars reveal">
         <div class="pillar">
-          <div class="pillar-title">VLSI & RTL Design</div>
+          <div class="pillar-title">VLSI &amp; RTL Design</div>
           <div class="pillar-text">Designing digital logic and processor architectures in Verilog/SystemVerilog, with synthesis and timing analysis in AMD Vivado.</div>
         </div>
         <div class="pillar">
@@ -303,14 +365,14 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
         </div>
         <div class="pillar">
           <div class="pillar-title">Electronic System Design</div>
-          <div class="pillar-text">Designing schematics and PCBs using Eagle, integrating sensors and interfaces including SPI, I2C, UART and CAN.</div>
+          <div class="pillar-text">Designing schematics and PCBs using Eagle, integrating sensors and communication interfaces — SPI, I2C, UART and CAN.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ═══════════════════════════════════════════ SKILLS -->
 <section id="skills">
   <div class="container">
     <div class="reveal">
@@ -319,17 +381,52 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
       <div class="divider"></div>
     </div>
     <div class="skills-grid">
-      <div class="skill-block reveal d1"><div class="skill-head"><span class="skill-icon">💻</span><span class="skill-name">Languages</span></div><div class="chips"><span class="chip">C</span><span class="chip">C++</span><span class="chip">Python</span><span class="chip">Verilog HDL</span><span class="chip">SystemVerilog</span></div></div>
-      <div class="skill-block reveal d2"><div class="skill-head"><span class="skill-icon">🔬</span><span class="skill-name">Embedded Platforms</span></div><div class="chips"><span class="chip">STM32</span><span class="chip">PIC16F877A</span><span class="chip">ESP32</span><span class="chip">ESP8266</span><span class="chip">Raspberry Pi</span></div></div>
-      <div class="skill-block reveal d3"><div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">Protocols</span></div><div class="chips"><span class="chip">SPI</span><span class="chip">I2C</span><span class="chip">UART</span><span class="chip">CAN</span></div></div>
-      <div class="skill-block reveal d4"><div class="skill-head"><span class="skill-icon">🏗️</span><span class="skill-name">VLSI &amp; FPGA Tools</span></div><div class="chips"><span class="chip">Xilinx ISE</span><span class="chip">AMD Vivado</span><span class="chip">ModelSim</span><span class="chip">Spartan-3</span></div></div>
-      <div class="skill-block reveal d5"><div class="skill-head"><span class="skill-icon">🎨</span><span class="skill-name">EDA &amp; Design</span></div><div class="chips"><span class="chip">Eagle PCB</span><span class="chip">Proteus</span><span class="chip">STM32CubeIDE</span><span class="chip">MPLAB</span></div></div>
-      <div class="skill-block reveal d6"><div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">Core Domains</span></div><div class="chips"><span class="chip">Digital Logic</span><span class="chip">Computer Architecture</span><span class="chip">RTL Verification</span><span class="chip">FPGA Development</span></div></div>
+      <div class="skill-block reveal">
+        <div class="skill-head"><span class="skill-icon">💻</span><span class="skill-name">Languages</span></div>
+        <div class="chips">
+          <span class="chip">C</span><span class="chip">C++</span><span class="chip">Python</span>
+          <span class="chip">Verilog HDL</span><span class="chip">SystemVerilog</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-head"><span class="skill-icon">🔬</span><span class="skill-name">Embedded Platforms</span></div>
+        <div class="chips">
+          <span class="chip">STM32</span><span class="chip">PIC16F877A</span><span class="chip">ESP32</span>
+          <span class="chip">ESP8266</span><span class="chip">Raspberry Pi</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-head"><span class="skill-icon">📡</span><span class="skill-name">Protocols</span></div>
+        <div class="chips">
+          <span class="chip">SPI</span><span class="chip">I2C</span><span class="chip">UART</span><span class="chip">CAN</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-head"><span class="skill-icon">🏗️</span><span class="skill-name">VLSI &amp; FPGA Tools</span></div>
+        <div class="chips">
+          <span class="chip">Xilinx ISE</span><span class="chip">AMD Vivado</span>
+          <span class="chip">ModelSim</span><span class="chip">Spartan-3</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-head"><span class="skill-icon">🎨</span><span class="skill-name">EDA &amp; Design</span></div>
+        <div class="chips">
+          <span class="chip">Eagle PCB</span><span class="chip">Proteus</span>
+          <span class="chip">STM32CubeIDE</span><span class="chip">MPLAB</span>
+        </div>
+      </div>
+      <div class="skill-block reveal">
+        <div class="skill-head"><span class="skill-icon">🧠</span><span class="skill-name">Core Domains</span></div>
+        <div class="chips">
+          <span class="chip">Digital Logic</span><span class="chip">Computer Architecture</span>
+          <span class="chip">RTL Verification</span><span class="chip">FPGA Development</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- ═══════════════════════════════════════════ EXPERIENCE -->
 <section id="experience" class="alt">
   <div class="container">
     <div class="reveal">
@@ -337,9 +434,9 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
       <h2 class="section-title">Professional Journey</h2>
       <div class="divider"></div>
     </div>
-    <div class="exp-card reveal d1">
+    <div class="exp-card reveal">
       <div class="exp-top">
-        <div class="exp-role">Team Lead — Embedded Systems &amp; R&D Engineer</div>
+        <div class="exp-role">Team Lead — Embedded Systems &amp; R&amp;D Engineer</div>
         <div class="exp-badge">Aug 2023 – Present</div>
       </div>
       <div class="exp-company">Evolve Robotics LLP</div>
@@ -347,14 +444,14 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
       <ul class="exp-list">
         <li>Develop embedded solutions using STM32, PIC, ESP32 and Raspberry Pi, leading the team through complete product development cycles.</li>
         <li>Design and prototype electronic systems integrating sensors and communication interfaces including SPI, I2C, UART and CAN.</li>
-        <li>Perform firmware development, hardware debugging and full system integration across multiple product lines.</li>
-        <li>Drive R&D initiatives for new electronic products and prototypes from initial concept through to delivery.</li>
+        <li>Perform firmware development, hardware debugging and full embedded system integration across multiple product lines.</li>
+        <li>Drive research and development of new electronic products and prototypes from initial concept through to delivery.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ═══════════════════════════════════════════ PROJECTS -->
 <section id="projects">
   <div class="container">
     <div class="reveal">
@@ -362,6 +459,8 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
       <h2 class="section-title">Selected Work</h2>
       <div class="divider"></div>
     </div>
+
+    <!-- Featured Project -->
     <div class="proj-featured reveal">
       <div>
         <div class="feat-tag">Featured · VLSI Design</div>
@@ -373,23 +472,60 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
           <div><div class="pm-v">0.092 W</div><div class="pm-k">Estimated Power</div></div>
         </div>
         <div class="feat-chips">
-          <span class="chip-inv">Verilog HDL</span><span class="chip-inv">AMD Vivado</span><span class="chip-inv">RTL Simulation</span><span class="chip-inv">Synthesis</span><span class="chip-inv">RISC-V ISA</span><span class="chip-inv">Clock Gating</span>
+          <span class="chip-inv">Verilog HDL</span>
+          <span class="chip-inv">AMD Vivado</span>
+          <span class="chip-inv">RTL Simulation</span>
+          <span class="chip-inv">Synthesis</span>
+          <span class="chip-inv">RISC-V ISA</span>
+          <span class="chip-inv">Clock Gating</span>
         </div>
       </div>
       <div class="feat-side">RISC-V PROCESSOR</div>
     </div>
+
+    <!-- Project Grid -->
     <div class="proj-grid">
-      <div class="proj-card reveal d1"><div class="proj-tag tag-v">VLSI</div><div class="proj-title">UART Transmitter &amp; Receiver</div><div class="proj-desc">Verilog UART module with transmitter and receiver blocks using FSM architecture, verified through RTL simulation.</div><div class="chips"><span class="chip">Verilog</span><span class="chip">FSM</span><span class="chip">RTL Sim</span></div></div>
-      <div class="proj-card reveal d2"><div class="proj-tag tag-v">VLSI</div><div class="proj-title">4-bit ALU Design</div><div class="proj-desc">Arithmetic and logical operation unit covering all standard operations, verified through functional simulation.</div><div class="chips"><span class="chip">Verilog</span><span class="chip">ModelSim</span><span class="chip">Vivado</span></div></div>
-      <div class="proj-card reveal d3"><div class="proj-tag tag-v">FPGA</div><div class="proj-title">Full Adder FPGA Implementation</div><div class="proj-desc">Full Adder in Verilog deployed on FPGA via Xilinx ISE, validating hardware synthesis on Spartan-3 board.</div><div class="chips"><span class="chip">Verilog</span><span class="chip">Xilinx ISE</span><span class="chip">Spartan-3</span></div></div>
-      <div class="proj-card reveal d1"><div class="proj-tag tag-e">Embedded</div><div class="proj-title">ESP32 Smart Medical Monitor</div><div class="proj-desc">IoT health monitoring device using ESP32 with real-time sensor acquisition and wireless data transmission.</div><div class="chips"><span class="chip">ESP32</span><span class="chip">C/C++</span><span class="chip">IoT</span></div></div>
-      <div class="proj-card reveal d2"><div class="proj-tag tag-e">Embedded</div><div class="proj-title">Vision-Based Accident Detection</div><div class="proj-desc">Computer vision accident detection on Raspberry Pi with real-time image processing and automated alerts.</div><div class="chips"><span class="chip">Raspberry Pi</span><span class="chip">Python</span><span class="chip">OpenCV</span></div></div>
-      <div class="proj-card reveal d3"><div class="proj-tag tag-e">Embedded</div><div class="proj-title">Custom ATmega328P Dev Board</div><div class="proj-desc">Custom microcontroller development board based on ATmega328P with full schematic capture, PCB layout and fabrication.</div><div class="chips"><span class="chip">Eagle PCB</span><span class="chip">ATmega328P</span></div></div>
+      <div class="proj-card reveal">
+        <div class="proj-tag tag-v">VLSI</div>
+        <div class="proj-title">UART Transmitter &amp; Receiver</div>
+        <div class="proj-desc">UART communication module in Verilog with transmitter and receiver blocks using FSM architecture, verified through RTL simulation.</div>
+        <div class="chips"><span class="chip">Verilog</span><span class="chip">FSM</span><span class="chip">RTL Sim</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag tag-v">VLSI</div>
+        <div class="proj-title">4-bit ALU Design</div>
+        <div class="proj-desc">Arithmetic and logical operation unit in Verilog, covering all standard operations and verified through functional simulation.</div>
+        <div class="chips"><span class="chip">Verilog</span><span class="chip">ModelSim</span><span class="chip">Vivado</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag tag-v">FPGA</div>
+        <div class="proj-title">Full Adder FPGA Implementation</div>
+        <div class="proj-desc">Full Adder in Verilog HDL deployed on FPGA via Xilinx ISE, validating hardware synthesis on the Spartan-3 board.</div>
+        <div class="chips"><span class="chip">Verilog</span><span class="chip">Xilinx ISE</span><span class="chip">Spartan-3</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag tag-e">Embedded</div>
+        <div class="proj-title">ESP32 Smart Medical Monitor</div>
+        <div class="proj-desc">IoT health monitoring device using ESP32 with real-time sensor data acquisition and wireless transmission.</div>
+        <div class="chips"><span class="chip">ESP32</span><span class="chip">C/C++</span><span class="chip">IoT</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag tag-e">Embedded</div>
+        <div class="proj-title">Vision-Based Accident Detection</div>
+        <div class="proj-desc">Computer vision accident detection system on Raspberry Pi with real-time image processing and automated alert mechanisms.</div>
+        <div class="chips"><span class="chip">Raspberry Pi</span><span class="chip">Python</span><span class="chip">OpenCV</span></div>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-tag tag-e">Embedded</div>
+        <div class="proj-title">Custom ATmega328P Dev Board</div>
+        <div class="proj-desc">Custom microcontroller development board based on ATmega328P — full schematic capture, PCB layout and fabrication.</div>
+        <div class="chips"><span class="chip">Eagle PCB</span><span class="chip">ATmega328P</span><span class="chip">Hardware</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
+<!-- ═══════════════════════════════════════════ EDUCATION -->
 <section id="education" class="alt">
   <div class="container">
     <div class="reveal">
@@ -398,32 +534,53 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
       <div class="divider"></div>
     </div>
     <div class="edu-grid">
-      <div class="edu-card reveal d1">
+      <div class="edu-card reveal">
         <div class="edu-deg">M.Tech — VLSI &amp; Embedded Systems</div>
         <div class="edu-school">Mangalam College of Engineering</div>
         <div class="edu-period">2024 – 2026</div>
         <div class="edu-gpa">⭐ CGPA 7.94</div>
       </div>
-      <div class="edu-card reveal d2">
+      <div class="edu-card reveal">
         <div class="edu-deg">B.Tech — Electronics &amp; Communication Engineering</div>
         <div class="edu-school">Mar Baselious College of Engineering and Technology</div>
         <div class="edu-period">2019 – 2023</div>
         <div class="edu-gpa">⭐ CGPA 7.46</div>
       </div>
     </div>
-    <div class="reveal" style="margin-bottom:1.5rem;"><span class="label">Certifications &amp; Achievements</span></div>
+
+    <div class="reveal" style="margin-bottom: 1.5rem;">
+      <span class="label">Certifications &amp; Achievements</span>
+    </div>
     <div class="extras-grid">
-      <div class="extra-card reveal d1"><div class="extra-ico">🏅</div><div><div class="extra-name">CMOS VLSI Design</div><div class="extra-sub">NPTEL Certification</div></div></div>
-      <div class="extra-card reveal d2"><div class="extra-ico">🏅</div><div><div class="extra-name">Internet of Things</div><div class="extra-sub">NPTEL Certification</div></div></div>
-      <div class="extra-card reveal d3"><div class="extra-ico">🏅</div><div><div class="extra-name">PCB Design</div><div class="extra-sub">Internshala Certification</div></div></div>
-      <div class="extra-card reveal d1"><div class="extra-ico">🎤</div><div><div class="extra-name">Speaker — IEEE Robotics Chapter Inauguration</div><div class="extra-sub">Saintgits College of Engineering</div></div></div>
-      <div class="extra-card reveal d2"><div class="extra-ico">💡</div><div><div class="extra-name">Technical Talk — Engineering Innovation</div><div class="extra-sub">Technology Product Development</div></div></div>
-      <div class="extra-card reveal d3"><div class="extra-ico">💰</div><div><div class="extra-name">Funded B.Tech Project</div><div class="extra-sub">Portable Foldable Electric Scooter</div></div></div>
+      <div class="extra-card reveal">
+        <div class="extra-ico">🏅</div>
+        <div><div class="extra-name">CMOS VLSI Design</div><div class="extra-sub">NPTEL Certification</div></div>
+      </div>
+      <div class="extra-card reveal">
+        <div class="extra-ico">🏅</div>
+        <div><div class="extra-name">Internet of Things</div><div class="extra-sub">NPTEL Certification</div></div>
+      </div>
+      <div class="extra-card reveal">
+        <div class="extra-ico">🏅</div>
+        <div><div class="extra-name">PCB Design</div><div class="extra-sub">Internshala Certification</div></div>
+      </div>
+      <div class="extra-card reveal">
+        <div class="extra-ico">🎤</div>
+        <div><div class="extra-name">Speaker — IEEE Robotics Chapter Inauguration</div><div class="extra-sub">Saintgits College of Engineering</div></div>
+      </div>
+      <div class="extra-card reveal">
+        <div class="extra-ico">💡</div>
+        <div><div class="extra-name">Technical Talk — Engineering Innovation</div><div class="extra-sub">Technology Product Development</div></div>
+      </div>
+      <div class="extra-card reveal">
+        <div class="extra-ico">💰</div>
+        <div><div class="extra-name">Funded B.Tech Project</div><div class="extra-sub">Portable Foldable Electric Scooter</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ═══════════════════════════════════════════ CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="reveal">
@@ -432,24 +589,43 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
       <div class="divider"></div>
     </div>
     <div class="contact-grid">
-      <div class="reveal d1">
+      <div class="reveal">
         <p class="contact-desc">I'm open to new opportunities in VLSI design, embedded systems, and FPGA development. Whether you have a project, a role, or just want to connect — feel free to reach out.</p>
         <div class="contact-items">
-          <a href="/cdn-cgi/l/email-protection#680904041f010602090b070a58585f280f05090104460b0705" class="contact-item"><div class="ci-icon">📧</div><div><div class="ci-val"><span class="__cf_email__" data-cfemail="c1a0adadb6a8afaba0a2aea3f1f1f681a6aca0a8adefa2aeac">[email&#160;protected]</span></div><div class="ci-key">Email</div></div></a>
-          <a href="tel:+919567121189" class="contact-item"><div class="ci-icon">📱</div><div><div class="ci-val">+91 95671 21189</div><div class="ci-key">Phone</div></div></a>
-          <a href="https://linkedin.com/in/allwinjacob" target="_blank" rel="noopener" class="contact-item"><div class="ci-icon">🔗</div><div><div class="ci-val">linkedin.com/in/allwinjacob</div><div class="ci-key">LinkedIn</div></div></a>
+          <a href="mailto:allwinjacob007@gmail.com" class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div><div class="ci-val">allwinjacob007@gmail.com</div><div class="ci-key">Email</div></div>
+          </a>
+          <a href="tel:+919567121189" class="contact-item">
+            <div class="ci-icon">📱</div>
+            <div><div class="ci-val">+91 95671 21189</div><div class="ci-key">Phone</div></div>
+          </a>
+          <a href="https://linkedin.com/in/allwinjacob" target="_blank" rel="noopener" class="contact-item">
+            <div class="ci-icon">🔗</div>
+            <div><div class="ci-val">linkedin.com/in/allwinjacob</div><div class="ci-key">LinkedIn</div></div>
+          </a>
         </div>
       </div>
-      <div class="form reveal d2">
-        <div class="field"><label>Name</label><input type="text" placeholder="Your full name"></div>
-        <div class="field"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-        <div class="field"><label>Message</label><textarea placeholder="Tell me about your project or opportunity…"></textarea></div>
-        <button class="btn btn-fill" onclick="sendMsg(this)" style="align-self:flex-start;">Send Message</button>
+      <div class="form reveal">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" placeholder="Your full name">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="field">
+          <label>Message</label>
+          <textarea placeholder="Tell me about your project or opportunity…"></textarea>
+        </div>
+        <button class="btn btn-fill" onclick="sendMsg(this)" style="align-self: flex-start;">Send Message</button>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════ FOOTER -->
 <footer>
   <div>
     <div class="footer-name">Allwin Jacob</div>
@@ -458,15 +634,42 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem; d
   <a href="#hero" class="footer-top">Back to top ↑</a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function toggleMenu(){ document.getElementById('mob').classList.toggle('open'); }
-function closeMob(){ document.getElementById('mob').classList.remove('open'); }
+<script>
+  // Mobile menu
+  function toggleMenu() { document.getElementById('mob').classList.toggle('open'); }
+  function closeMob()   { document.getElementById('mob').classList.remove('open'); }
 
-const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }), {threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  // Scroll reveal — triggers .reveal elements as they enter viewport
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.06, rootMargin: '0px 0px -30px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-function sendMsg(btn){
-  btn.textContent='Sending…'; btn.disabled=true;
-  setTimeout(()=>{
-    btn.textContent='✓ Message Sent'; btn.style.background='#2a7d6e';
-    setTimeout(()=>{ btn.textConte
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    const y = scrollY + 80;
+    sections.forEach(s => {
+      const a = document.querySelector(`.nav-links a[href="#${s.id}"]`);
+      if (a) a.classList.toggle('active', y >= s.offsetTop && y < s.offsetTop + s.offsetHeight);
+    });
+  });
+
+  // Contact form mock
+  function sendMsg(btn) {
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = '✓ Message Sent';
+      btn.style.background = '#2a7d6e';
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }, 1000);
+  }
+</script>
+</body>
+</html>
